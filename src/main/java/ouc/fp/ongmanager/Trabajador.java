@@ -91,6 +91,11 @@ public class Trabajador extends Personal implements Usuario {
 	public void consultarProyectos(ListadoProyectos lp) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+	
+	 @Override
+	 public String toString() {
+	    return this.nombre + " " + this.apellidos + " (ID - " + this.id + ")";
+	 }
 
 }

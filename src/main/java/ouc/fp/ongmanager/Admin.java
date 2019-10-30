@@ -10,6 +10,8 @@ import java.util.Date;
 public class Admin extends Personal implements Usuario {
 	
 	private String rootPass;
+	private DAOFactory xmlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.XML);
+	private DAO<Trabajador> trabajadorDAO = (XMLTrabajadorDAO) xmlDAOFactory.getTrabajadorDAO();
 	
 	public Admin() {
 		super();
@@ -34,10 +36,11 @@ public class Admin extends Personal implements Usuario {
 
 	@Override
 	public void abrirSesion() throws IOException {
-    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
-    	int respuesta = 0;
-    	int opcionesValidas[] = {1, 2, 3, 4, 5};
-    	
+		    	
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int respuestaOpcion = 0;
+		int opcionesValidas[] = {1, 2, 3, 4, 5};
+		
     	System.out.println("\n***************************");
     	System.out.println(" Opciones de administrador");
     	System.out.println("***************************");
@@ -51,38 +54,55 @@ public class Admin extends Personal implements Usuario {
         	System.out.println("5 - Salir");
         	
         	try {
-        		respuesta = Integer.parseInt(br.readLine());
+        		respuestaOpcion = Integer.parseInt(br.readLine());
             } catch(NumberFormatException nfe) {
                 System.out.println("Los caracteres introducidos no son válidos.");
             }
-        	System.out.println(respuesta);
-        } while (Arrays.asList(opcionesValidas).contains(respuesta));
+        	
+        } while (Arrays.asList(opcionesValidas).contains(respuestaOpcion));
         
-        switch(respuesta) {
+        switch(respuestaOpcion) {
+        
            case 1:
-           	  System.out.println("Dar de alta un trabajador");
+        	   
+        	  darAltaTrabajador();
+        	  
+        	  String respuestaNuevaAccion;
+
+        	  do {
+        		  System.out.println("¿Daseas dar de alta otro trabajador? (S/N)");
+        		  respuestaNuevaAccion = br.readLine();
+        		
+        			if (respuestaNuevaAccion.equalsIgnoreCase("s")) {
+        				darAltaTrabajador();
+        			} else {
+        				abrirSesion();
+        			}
+        			
+        	  } while (respuestaNuevaAccion.equalsIgnoreCase("s"));
+        	  
               break;
            
            case 2:
-           	  System.out.println("Imprimir listado trabajadores");
+           	  imprimirListadoTrabajadores();
+           	  abrirSesion();
               break;
               
            case 3:
-            	  System.out.println("Dar de alta una delegación");
+        	   System.out.println("Dar de alta una delegación");
                break;
                
            case 4:
-            	  System.out.println("Imprimir listado delegaciones");
+        	   System.out.println("Imprimir listado delegaciones");
                break;
               
            case 5:
-        	  System.out.println("La sesión se ha cerrado con éxito.");
-        	  System.exit(0);
-              break;
+        	   System.out.println("La sesión se ha cerrado con éxito.");
+        	   System.exit(0);
+               break;
         }
     
 	}
-
 
 	@Override
 	public void consultarProyectos(ListadoProyectos lp) {
@@ -90,6 +110,28 @@ public class Admin extends Personal implements Usuario {
 		
 	}
 	
+	public void imprimirListadoTrabajadores() {
+		trabajadorDAO.obtenerTodos();
+		
+	}
 	
+	public void darAltaTrabajador() throws IOException {
+		Trabajador nuevoTrabajador = new Trabajador();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("\nIntroduce el nombre del trabajador: ");
+		nuevoTrabajador.setNombre(br.readLine());
+		System.out.println("\nIntroduce los apellidos del trabajador: ");
+		nuevoTrabajador.setApellidos(br.readLine());
+		System.out.println("\nIntroduce el ID del trabajador: ");
+		nuevoTrabajador.setId(br.readLine());
+//		System.out.println("\nIntroduce el email del trabajador: ");
+//		nuevoTrabajador.setEmail(br.readLine());
+//		System.out.println("\nIntroduce la direccion del trabajador: ");
+//		nuevoTrabajador.setDireccion(br.readLine());
+//		System.out.println("\nIntroduce el horario del trabajador: ");
+//		nuevoTrabajador.setHorarioLaboral(br.readLine());
+		trabajadorDAO.crearNuevo(nuevoTrabajador);
+		
+	}
 
 }
