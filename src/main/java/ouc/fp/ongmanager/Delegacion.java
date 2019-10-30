@@ -117,6 +117,12 @@ public class Delegacion {
 	}
 	
 	
-	
+	 public String toString() {
+		 if (isSedeCentral) {
+			 return this.nombreSucursal + " (SEDE CENTRAL)";
+		 } else {
+			 return this.nombreSucursal + " (ID - " + this.idSucursal + ")";
+		 }
+	 }
 
 }
