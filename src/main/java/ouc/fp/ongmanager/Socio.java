@@ -47,7 +47,10 @@ public class Socio extends Persona implements Financiador{
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return this.nombre + " " + this.apellidos + " (ID - " + this.id + ")";
+	}
 	
 
 }
