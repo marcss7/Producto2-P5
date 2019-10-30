@@ -2,12 +2,12 @@ package ouc.fp.ongmanager;
 
 public class Persona {
 	
-	private String nombre;
-	private String apellidos;
-	private String id;
-	private String email;
-	private int telefono;
-	private String direccion;
+	protected String nombre;
+	protected String apellidos;
+	protected String id;
+	protected String email;
+	protected int telefono;
+	protected String direccion;
 	
 	
 	public Persona() {

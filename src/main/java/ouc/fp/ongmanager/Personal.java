@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class Personal extends Persona {
 
-	private Delegacion delegacionAsignada;
-	private Date antiguedad;
-	private ArrayList<Proyecto> proyectosAsignados;
+	protected Delegacion delegacionAsignada;
+	protected Date antiguedad;
+	protected ArrayList<Proyecto> proyectosAsignados;
 	
 	
 	public Personal() {
