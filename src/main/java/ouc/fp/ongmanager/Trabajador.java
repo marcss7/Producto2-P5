@@ -1,6 +1,10 @@
 package ouc.fp.ongmanager;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Trabajador extends Personal implements Usuario {
@@ -42,8 +46,43 @@ public class Trabajador extends Personal implements Usuario {
 
 
 	@Override
-	public void abrirSesion() {
-		// TODO Auto-generated method stub
+	public void abrirSesion() throws IOException {
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
+    	int respuesta = 0;
+    	int opcionesValidas[] = {1, 2, 3};
+    	
+    	System.out.println("\n**********************");
+    	System.out.println(" Opciones de empleado");
+    	System.out.println("**********************");
+    	
+        do {
+        	System.out.println("\nPor favor, introduce el número de la acción que deseas realizar: ");
+        	System.out.println("1 - Dar de alta un socio");
+        	System.out.println("2 - Imprimir listado de socios");
+        	System.out.println("3 - Salir");
+        	
+        	try {
+        		respuesta = Integer.parseInt(br.readLine());
+            } catch(NumberFormatException nfe) {
+                System.out.println("Los caracteres introducidos no son válidos.");
+            }
+        	System.out.println(respuesta);
+        } while (Arrays.asList(opcionesValidas).contains(respuesta));
+        
+        switch(respuesta) {
+           case 1:
+           	  System.out.println("Dar de alta un socio");
+              break;
+           
+           case 2:
+           	  System.out.println("Imprimir listado de socios");
+              break;
+              
+           case 3:
+        	  System.out.println("La sesión se ha cerrado con éxito.");
+        	  System.exit(0);
+              break;
+        }
 		
 	}
 
