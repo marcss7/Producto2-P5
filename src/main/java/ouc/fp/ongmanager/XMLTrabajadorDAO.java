@@ -28,7 +28,7 @@ public class XMLTrabajadorDAO implements DAO<Trabajador>{
 
 	@Override
 	public Optional<Trabajador> obtener(String id) {
-		System.out.println("Se ha creado obtenido un trabajador");
+		System.out.println("Se ha obtenido un trabajador");
         //return encontrarTrabajadorPorId(id); 
 		return null;
 	}
