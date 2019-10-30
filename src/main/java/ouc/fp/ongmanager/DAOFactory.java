@@ -9,7 +9,7 @@ public abstract class DAOFactory {
 	  // Hay un método para cada DAO que puede ser creado.
 	  // Las factorías tendrán que implementar estos métodos.
 	  public abstract DAO getTrabajadorDAO();
-	  public abstract DAO getASocioDAO();
+	  public abstract DAO getSocioDAO();
 	  public abstract DAO getDelegacionDAO();
 
 	  public static DAOFactory getDAOFactory(int whichFactory) {

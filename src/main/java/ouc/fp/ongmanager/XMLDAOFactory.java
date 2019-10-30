@@ -8,7 +8,7 @@ public class XMLDAOFactory extends DAOFactory {
 	}
 
 	@Override
-	public XMLSocioDAO getASocioDAO() {
+	public XMLSocioDAO getSocioDAO() {
 		// TODO Auto-generated method stub
 		return new XMLSocioDAO();
 	}
