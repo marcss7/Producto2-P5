@@ -14,26 +14,19 @@ public class Proyecto {
 	private Date fechaInicio;
 	private Date fechaFin;
 	private ArrayList<SocioLocal> listadoSocios;
-	private ArrayList<Financiador> listadoFinanciadores;
+	private ListadoFinanciadores listadoFinanciadores;
 	private float importeFinanciacion;
 	private ArrayList<String> accionesARealizar;
 	private ArrayList<Personal> personalAsignado;
-	
-	
-	
 	
 	
 	public Proyecto() {
 		super();
 	}
 
-
-
-
-
 	public Proyecto(String codigoProyeto, String nombreProyecto, String pais, String localizacion,
 			LineaAccion lineaAccion, SublineaAccion sublineaAccion, Date fechaInicio, Date fechaFin,
-			ArrayList<SocioLocal> listadoSocios, ArrayList<Financiador> listadoFinanciadores, float importeFinanciacion,
+			ArrayList<SocioLocal> listadoSocios, ListadoFinanciadores listadoFinanciadores, float importeFinanciacion,
 			ArrayList<String> accionesARealizar, ArrayList<Personal> personalAsignado) {
 		super();
 		this.codigoProyeto = codigoProyeto;
@@ -199,7 +192,7 @@ public class Proyecto {
 
 
 
-	public ArrayList<Financiador> getListadoFinanciadores() {
+	public ListadoFinanciadores getListadoFinanciadores() {
 		return listadoFinanciadores;
 	}
 
@@ -207,7 +200,7 @@ public class Proyecto {
 
 
 
-	public void setListadoFinanciadores(ArrayList<Financiador> listadoFinanciadores) {
+	public void setListadoFinanciadores(ListadoFinanciadores listadoFinanciadores) {
 		this.listadoFinanciadores = listadoFinanciadores;
 	}
 

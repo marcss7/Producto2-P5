@@ -1,6 +1,5 @@
 package ouc.fp.ongmanager;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Voluntario extends Personal {
@@ -14,9 +13,7 @@ public class Voluntario extends Personal {
 		super();
 	}
 
-
-
-	public Voluntario(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ArrayList<Proyecto> proyectosAsignados, String disponibilidad, Boolean isInternacional) {
+	public Voluntario(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados, String disponibilidad, Boolean isInternacional) {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.disponibilidad = disponibilidad;
 		this.isInternacional = isInternacional;

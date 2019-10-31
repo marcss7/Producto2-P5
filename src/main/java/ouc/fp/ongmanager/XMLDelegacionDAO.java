@@ -1,28 +1,36 @@
 package ouc.fp.ongmanager;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
 public class XMLDelegacionDAO implements DAO<Delegacion>{
 	
-	private List<Delegacion> listadoDelegaciones = new ArrayList<>();
+	private ListadoDelegaciones listadoDelegaciones = new ListadoDelegaciones();
 	
     public XMLDelegacionDAO() {
     	
     }
     
-	public List<Delegacion> getListadoDelegacioness() {
+	public ListadoDelegaciones getListadoDelegacioness() {
 		return listadoDelegaciones;
 	}
 
-	public void setListadoDelegaciones(List<Delegacion> listadoDelegaciones) {
+	public void setListadoDelegaciones(ListadoDelegaciones listadoDelegaciones) {
 		this.listadoDelegaciones = listadoDelegaciones;
 	}
 
 	@Override
-	public void crearNuevo(Delegacion d) {
+	public void crearNuevo(Delegacion d) throws JAXBException {
 		listadoDelegaciones.add(d);
+		JAXBContext context = JAXBContext.newInstance(Delegacion.class);
+	    Marshaller mar= context.createMarshaller();
+	    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	    mar.marshal(d, new File("delegacion.xml"));
 		System.out.println("Se ha creado una nueva delegación");
 	}
 
@@ -42,25 +50,28 @@ public class XMLDelegacionDAO implements DAO<Delegacion>{
 
 	@Override
 	public void borrar(Delegacion d) {
-    	listadoDelegaciones.remove(d.getIdSucursal()); 
         System.out.println("La sucursal con ID " + d.getIdSucursal() + "ha sido eliminada"); 
 	}
 
 	@Override
-	public List<Delegacion> obtenerTodos() {
-		if (listadoDelegaciones.size() != 0) {
-			System.out.println("La ONG cuenta con " + listadoDelegaciones.size() + " sedes:");
-	    	for (Delegacion d : listadoDelegaciones) {
+	public List<Delegacion> obtenerTodos() throws JAXBException {
+		if (listadoDelegaciones.getListadoDelegaciones() != null) {
+			System.out.println("La ONG cuenta con " + listadoDelegaciones.getListadoDelegaciones().size() + " sedes:");
+	    	for (Delegacion d : listadoDelegaciones.getListadoDelegaciones()) {
 	    		System.out.println(d.toString());
 	    	}
+	    	JAXBContext context = JAXBContext.newInstance(ListadoDelegaciones.class);
+	    	Marshaller marshaller = context.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			marshaller.marshal(listadoDelegaciones, new File("delegaciones.xml"));
 	    } else {
-	    	System.out.println("La lista de trabajadores está vacía.");
+	    	System.out.println("La lista de delegaciones está vacía.");
 	    }
-		return listadoDelegaciones;
+		return listadoDelegaciones.getListadoDelegaciones();
 	}
 	
     public Delegacion encontrarDelegacionPorId(String id) {
-    	for (Delegacion d : listadoDelegaciones) {
+    	for (Delegacion d : listadoDelegaciones.getListadoDelegaciones()) {
     		if (d.getIdSucursal().equals(id)) {
     			return d;
     		}

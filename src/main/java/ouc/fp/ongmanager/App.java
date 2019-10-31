@@ -5,17 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+import javax.xml.bind.JAXBException;
+
 /**
  * Hello world!
  *
  */
 public class App {
 	
-    public static void main( String[] args ) throws IOException {
+	public static void main( String[] args ) throws IOException, JAXBException {
     	
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
     	int respuesta = 0;
-    	int opcionesValidas[] = {1, 2, 3};
+    	Integer[] opcionesValidas = {1, 2, 3};
     	
     	System.out.println("*************************");
     	System.out.println(" Bienvenido a ONGManager");
@@ -33,7 +35,7 @@ public class App {
                 System.out.println("Los caracteres introducidos no son válidos.");
             }
         	
-        } while (Arrays.asList(opcionesValidas).contains(respuesta));
+        } while (!Arrays.asList(opcionesValidas).contains(respuesta));
         
         switch(respuesta) {
            case 1:

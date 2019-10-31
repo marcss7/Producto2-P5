@@ -2,6 +2,13 @@ package ouc.fp.ongmanager;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "socio")
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Socio extends Persona implements Financiador{
 	
 	private String idSocio;
@@ -19,7 +26,7 @@ public class Socio extends Persona implements Financiador{
 		this.periodicidadCuota = periodicidadCuota;
 	}
 
-
+	@XmlElement(name = "idSocio")
 	public String getIdSocio() {
 		return idSocio;
 	}

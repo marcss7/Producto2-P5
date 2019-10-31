@@ -1,22 +1,26 @@
 package ouc.fp.ongmanager;
 
-import java.util.ArrayList;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "persona")
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Personal extends Persona {
 
 	protected Delegacion delegacionAsignada;
 	protected Date antiguedad;
-	protected ArrayList<Proyecto> proyectosAsignados;
-	
-	
+	protected ListadoProyectos proyectosAsignados;
+
 	public Personal() {
 		super();
 	}
 
-	public Personal(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ArrayList<Proyecto> proyectosAsignados) {
+	public Personal(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados) {
 		super(nombre, apellidos, id, email, telefono, direccion);
-		this.delegacionAsignada = delegacionAsignada;
+		//this.delegacionAsignada = delegacionAsignada;
 		this.antiguedad = antiguedad;
 		this.proyectosAsignados = proyectosAsignados;
 	}
@@ -36,14 +40,12 @@ public class Personal extends Persona {
 	public void setAntiguedad(Date antiguedad) {
 		this.antiguedad = antiguedad;
 	}
-
-	public ArrayList<Proyecto> getProyectosAsignados() {
+	
+	public ListadoProyectos getProyectosAsignados() {
 		return proyectosAsignados;
 	}
 
-	public void setProyectosAsignados(ArrayList<Proyecto> proyectosAsignados) {
+	public void setProyectosAsignados(ListadoProyectos proyectosAsignados) {
 		this.proyectosAsignados = proyectosAsignados;
 	}
-	
-	
 }

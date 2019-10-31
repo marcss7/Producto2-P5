@@ -3,9 +3,10 @@ package ouc.fp.ongmanager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+
+import javax.xml.bind.JAXBException;
 
 public class Admin extends Personal implements Usuario {
 	
@@ -14,12 +15,12 @@ public class Admin extends Personal implements Usuario {
 	private DAO<Trabajador> trabajadorDAO = (XMLTrabajadorDAO) xmlDAOFactory.getTrabajadorDAO();
 	private DAO<Delegacion> delegacionDAO = (XMLDelegacionDAO) xmlDAOFactory.getDelegacionDAO();
 	
-	public Admin() {
+	public Admin() throws JAXBException {
 		super();
 	}
 
 
-	public Admin(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ArrayList<Proyecto> proyectosAsignados, String horarioLaboral, String pass) {
+	public Admin(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados, String horarioLaboral, String pass) throws JAXBException {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.rootPass = pass;
 	}
@@ -36,11 +37,11 @@ public class Admin extends Personal implements Usuario {
 
 
 	@Override
-	public void abrirSesion() throws IOException {
+	public void abrirSesion() throws IOException, JAXBException {
 		    	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int respuestaOpcion = 0;
-		int opcionesValidas[] = {1, 2, 3, 4, 5};
+		Integer[] opcionesValidas = {1, 2, 3, 4, 5};
   	    String respuestaNuevaAccion;
 		
     	System.out.println("\n***************************");
@@ -61,7 +62,7 @@ public class Admin extends Personal implements Usuario {
                 System.out.println("Los caracteres introducidos no son válidos.");
             }
         	
-        } while (Arrays.asList(opcionesValidas).contains(respuestaOpcion));
+        } while (!Arrays.asList(opcionesValidas).contains(respuestaOpcion));
         
         switch(respuestaOpcion) {
         
@@ -124,15 +125,15 @@ public class Admin extends Personal implements Usuario {
 		
 	}
 	
-	public void imprimirListadoTrabajadores() {
+	public void imprimirListadoTrabajadores() throws JAXBException {
 		trabajadorDAO.obtenerTodos();
 	}
 	
-	public void imprimirListadoDelegaciones() {
+	public void imprimirListadoDelegaciones() throws JAXBException {
 		delegacionDAO.obtenerTodos();
 	}
 	
-	public void darAltaTrabajador() throws IOException {
+	public void darAltaTrabajador() throws IOException, JAXBException {
 		Trabajador nuevoTrabajador = new Trabajador();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre del trabajador: ");
@@ -141,11 +142,13 @@ public class Admin extends Personal implements Usuario {
 		nuevoTrabajador.setApellidos(br.readLine());
 		System.out.println("\nIntroduce el ID del trabajador: ");
 		nuevoTrabajador.setId(br.readLine());
+		System.out.println("\nIntroduce el teléfono del trabajador: ");
+		nuevoTrabajador.setTelefono((Integer.parseInt(br.readLine())));
 		trabajadorDAO.crearNuevo(nuevoTrabajador);
 		
 	}
 	
-	public void darAltaDelegacion() throws IOException {
+	public void darAltaDelegacion() throws IOException, JAXBException {
 		Delegacion nuevaDelegacion = new Delegacion();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");

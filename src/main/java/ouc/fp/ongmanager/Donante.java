@@ -6,13 +6,11 @@ public class Donante extends Persona implements Financiador {
 	
 	private String idDonante;
 	
-	
-	
 	public Donante() {
 		super();
 	}
 
-	public Donante(String nombre, String apellidos, String id, String email, int telefono, String direccion, String idSocio, TipoAportacion periodicidadCuota) {
+	public Donante(String nombre, String apellidos, String id, String email, int telefono, String direccion, String idSocio, TipoAportacion periodicidadCuota, String idDonante) {
 		super(nombre, apellidos, id, email, telefono, direccion);
 		this.idDonante = idDonante;
 	}

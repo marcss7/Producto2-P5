@@ -2,6 +2,13 @@ package ouc.fp.ongmanager;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "delegacion")
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Delegacion {
 	
 	private String nombreSucursal;
@@ -33,7 +40,7 @@ public class Delegacion {
 	}
 
 
-
+	@XmlElement(name = "nombre")
 	public String getNombreSucursal() {
 		return nombreSucursal;
 	}
@@ -45,7 +52,7 @@ public class Delegacion {
 	}
 
 
-
+	@XmlElement(name = "id")
 	public String getIdSucursal() {
 		return idSucursal;
 	}
@@ -105,7 +112,7 @@ public class Delegacion {
 	}
 
 
-
+	@XmlElement(name = "sedeCentral")
 	public Boolean getIsSedeCentral() {
 		return isSedeCentral;
 	}

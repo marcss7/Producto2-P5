@@ -1,28 +1,36 @@
 package ouc.fp.ongmanager;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
 public class XMLSocioDAO implements DAO<Socio> {
 	
-	private List<Socio> listadoSocios = new ArrayList<>();
+	private ListadoSocios listadoSocios = new ListadoSocios();
 	
     public XMLSocioDAO() {
     	
     }
 
-	public List<Socio> getListadoSocios() {
+	public ListadoSocios getListadoSocios() {
 		return listadoSocios;
 	}
 
-	public void setListadoSocios(List<Socio> listadoSocios) {
+	public void setListadoSocios(ListadoSocios listadoSocios) {
 		this.listadoSocios = listadoSocios;
 	}
 
 	@Override
-	public void crearNuevo(Socio s) {
+	public void crearNuevo(Socio s) throws JAXBException {
 		listadoSocios.add(s);
+		JAXBContext context = JAXBContext.newInstance(Socio.class);
+	    Marshaller mar= context.createMarshaller();
+	    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	    mar.marshal(s, new File("socio.xml"));
 		System.out.println("Se ha creado un nuevo socio");
 	}
 
@@ -42,25 +50,29 @@ public class XMLSocioDAO implements DAO<Socio> {
 
 	@Override
 	public void borrar(Socio s) {
-		listadoSocios.remove(s.getId()); 
         System.out.println("El socio con ID " + s.getId() + "ha sido eliminado"); 
 	}
 
 	@Override
-	public List<Socio> obtenerTodos() {
-		if (listadoSocios.size() != 0) {
-			System.out.println("La ONG cuenta con " + listadoSocios.size() + " socios:");
-	    	for (Socio s : listadoSocios) {
+	public List<Socio> obtenerTodos() throws JAXBException {
+		if (listadoSocios.getListadoSocios() != null) {
+			System.out.println("La ONG cuenta con " + listadoSocios.getListadoSocios().size() + " socios:");
+	    	for (Socio s : listadoSocios.getListadoSocios()) {
 	    		System.out.println(s.toString());
 	    	}
+	    	
+	    	JAXBContext context = JAXBContext.newInstance(ListadoSocios.class);
+	    	Marshaller marshaller = context.createMarshaller();
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			marshaller.marshal(listadoSocios, new File("socios.xml"));
 	    } else {
 	    	System.out.println("La lista de socios está vacía.");
 	    }
-		return listadoSocios;
+		return listadoSocios.getListadoSocios();
 	}
 	
     public Socio encontrarSocioPorId(String id) {
-    	for (Socio s : listadoSocios) {
+    	for (Socio s : listadoSocios.getListadoSocios()) {
     		if (s.getId().equals(id)) {
     			return s;
     		}

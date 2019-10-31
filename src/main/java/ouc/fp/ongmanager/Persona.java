@@ -1,6 +1,16 @@
 package ouc.fp.ongmanager;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "persona")
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
+@XmlType(propOrder={"id","nombre","apellidos", "email", "telefono", "direccion"})
 public class Persona {
+	
 	
 	protected String nombre;
 	protected String apellidos;
@@ -24,6 +34,7 @@ public class Persona {
 		this.direccion = direccion;
 	}
 
+	@XmlElement(name = "nombre")
 	public String getNombre() {
 		return nombre;
 	}
@@ -32,6 +43,7 @@ public class Persona {
 		this.nombre = nombre;
 	}
 
+	@XmlElement(name = "apellidos")
 	public String getApellidos() {
 		return apellidos;
 	}
@@ -40,6 +52,7 @@ public class Persona {
 		this.apellidos = apellidos;
 	}
 
+	@XmlElement(name = "id")
 	public String getId() {
 		return id;
 	}
@@ -48,6 +61,7 @@ public class Persona {
 		this.id = id;
 	}
 
+	@XmlElement(name = "email")
 	public String getEmail() {
 		return email;
 	}
@@ -56,6 +70,7 @@ public class Persona {
 		this.email = email;
 	}
 
+	@XmlElement(name = "telefono")
 	public int getTelefono() {
 		return telefono;
 	}
@@ -64,6 +79,7 @@ public class Persona {
 		this.telefono = telefono;
 	}
 
+	@XmlElement(name = "direccion")
 	public String getDireccion() {
 		return direccion;
 	}
@@ -72,9 +88,4 @@ public class Persona {
 		this.direccion = direccion;
 	}
 	
-	
-	
-	
-	
-
 }

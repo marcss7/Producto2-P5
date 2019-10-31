@@ -3,10 +3,17 @@ package ouc.fp.ongmanager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "trabajador")
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Trabajador extends Personal implements Usuario {
 
 	private String horarioLaboral;
@@ -15,12 +22,12 @@ public class Trabajador extends Personal implements Usuario {
 	private DAO<Socio> socioDAO = (XMLSocioDAO) xmlDAOFactory.getSocioDAO();
 
 
-	public Trabajador() {
+	public Trabajador() throws JAXBException {
 		super();
 	}
 
 
-	public Trabajador(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ArrayList<Proyecto> proyectosAsignados, String horarioLaboral, String pass) {
+	public Trabajador(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados, String horarioLaboral, String pass) throws JAXBException {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.horarioLaboral = horarioLaboral;
 		this.pass = pass;
@@ -37,6 +44,7 @@ public class Trabajador extends Personal implements Usuario {
 	}
 
 
+	@XmlElement(name = "pass")
 	public String getPass() {
 		return pass;
 	}
@@ -48,10 +56,10 @@ public class Trabajador extends Personal implements Usuario {
 
 
 	@Override
-	public void abrirSesion() throws IOException {
+	public void abrirSesion() throws IOException, JAXBException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
 		int respuestaOpcion = 0;
-		int opcionesValidas[] = {1, 2, 3};
+		Integer[] opcionesValidas = {1, 2, 3};
 		String respuestaNuevaAccion;
 
 		System.out.println("\n**********************");
@@ -70,7 +78,7 @@ public class Trabajador extends Personal implements Usuario {
 				System.out.println("Los caracteres introducidos no son válidos.");
 			}
 			System.out.println(respuestaOpcion);
-		} while (Arrays.asList(opcionesValidas).contains(respuestaOpcion));
+		} while (!Arrays.asList(opcionesValidas).contains(respuestaOpcion));
 
 		switch(respuestaOpcion) {
 		case 1:
@@ -115,11 +123,11 @@ public class Trabajador extends Personal implements Usuario {
 		return this.nombre + " " + this.apellidos + " (ID - " + this.id + ")";
 	}
 
-	public void imprimirListadoSocios() {
+	public void imprimirListadoSocios() throws JAXBException {
 		socioDAO.obtenerTodos();
 	}
 
-	public void darAltaSocio() throws IOException {
+	public void darAltaSocio() throws IOException, JAXBException {
 
 		Socio nuevoSocio = new Socio();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
