@@ -29,5 +29,4 @@ public class Donante extends Persona implements Financiador {
 		
 	}
 
-	//TEST
 }

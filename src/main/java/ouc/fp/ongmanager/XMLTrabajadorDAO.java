@@ -30,6 +30,12 @@ public class XMLTrabajadorDAO implements DAO<Trabajador>{
 		JAXBContext context = JAXBContext.newInstance(Trabajador.class);
 	    Marshaller mar= context.createMarshaller();
 	    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	    
+	    //Crea el directorio "xml" en caso de que no exista.
+		File f=new File("xml/");
+	    if (!f.exists()) {
+	      f.mkdirs();
+	    }
 	    mar.marshal(t, new File("xml/trabajador.xml"));
 		System.out.println("Se ha creado un nuevo trabajador");
 	}
@@ -60,6 +66,7 @@ public class XMLTrabajadorDAO implements DAO<Trabajador>{
 	    	for (Trabajador t : listadoTrabajadores.getListadoTrabajadores()) {
 	    		System.out.println(t.toString());
 	    	}
+	    	
 	    	JAXBContext context = JAXBContext.newInstance(ListadoTrabajadores.class);
 	    	Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

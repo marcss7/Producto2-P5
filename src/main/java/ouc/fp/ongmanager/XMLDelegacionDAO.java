@@ -30,6 +30,12 @@ public class XMLDelegacionDAO implements DAO<Delegacion>{
 		JAXBContext context = JAXBContext.newInstance(Delegacion.class);
 	    Marshaller mar= context.createMarshaller();
 	    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	    
+	    //Crea el directorio "xml" en caso de que no exista.
+	    File f=new File("xml/");
+	  	  if (!f.exists()) {
+	  	    f.mkdirs();
+	  	}
 	    mar.marshal(d, new File("delegacion.xml"));
 		System.out.println("Se ha creado una nueva delegación");
 	}

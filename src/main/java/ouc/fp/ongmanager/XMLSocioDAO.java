@@ -30,6 +30,12 @@ public class XMLSocioDAO implements DAO<Socio> {
 		JAXBContext context = JAXBContext.newInstance(Socio.class);
 	    Marshaller mar= context.createMarshaller();
 	    mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+	    
+	    //Crea el directorio "xml" en caso de que no exista.
+	    File f=new File("xml/");
+	  	  if (!f.exists()) {
+	  	    f.mkdirs();
+	  	}
 	    mar.marshal(s, new File("socio.xml"));
 		System.out.println("Se ha creado un nuevo socio");
 	}
