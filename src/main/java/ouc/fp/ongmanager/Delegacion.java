@@ -25,7 +25,7 @@ public class Delegacion {
 	private String nombreDelegacion;
 	private String idDelegacion;
 	private String direccion;
-	private int telefono;
+	private String telefono;
 	private ArrayList<Personal> personalAdscrito;
 	private ArrayList<Proyecto> listadoProyectos;
 	private Boolean isSedeCentral;
@@ -52,7 +52,7 @@ public class Delegacion {
 	 * @param listadoProyectos Atributo que guarda el listado de proyectos de la delegacion.
 	 * @param isSedeCentral Atributo que guarda el id de la sede central a la que pertenece la delegacion. 
 	 */
-	public Delegacion(String nombreDelegacion, String idDelegacion, String direccion, int telefono,
+	public Delegacion(String nombreDelegacion, String idDelegacion, String direccion, String telefono,
 			ArrayList<Personal> personalAdscrito, ArrayList<Proyecto> listadoProyectos, Boolean isSedeCentral) {
 		super();
 		this.nombreDelegacion = nombreDelegacion;
@@ -131,7 +131,7 @@ public class Delegacion {
 	 * @return el telefono de la delegacion. 
 	 */
 	@XmlElement(name = "telefono")
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
@@ -140,7 +140,7 @@ public class Delegacion {
 	 * 
 	 * @param telefono telefono de la delegacion.
 	 */
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

@@ -38,7 +38,7 @@ public class Donante extends Persona implements Financiador {
 	 * @param periodicidadCuota Atributo que guarda la periodicidad de la cuota de la persona.
 	 */
 	public Donante(String nombre, String apellidos, String id, String email,
-			       int telefono, String direccion, TipoAportacion periodicidadCuota, String idDonante) {
+			       String telefono, String direccion, TipoAportacion periodicidadCuota, String idDonante) {
 		super(nombre, apellidos, id, email, telefono, direccion);
 		this.idDonante = idDonante;
 	}

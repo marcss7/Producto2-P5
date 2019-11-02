@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBException;
 
@@ -56,7 +57,7 @@ public class Admin extends Personal implements Usuario {
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public Admin(String nombre, String apellidos, String id, String email,
-			     int telefono, String direccion, Delegacion delegacionAsignada,
+			     String telefono, String direccion, Delegacion delegacionAsignada,
 			     Date antiguedad, ListadoProyectos proyectosAsignados,
 			     String horarioLaboral, String pass) throws JAXBException {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
@@ -216,7 +217,7 @@ public class Admin extends Personal implements Usuario {
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
-	public void darAltaTrabajador() throws IOException, JAXBException {
+	private void darAltaTrabajador() throws IOException, JAXBException {
 		Trabajador nuevoTrabajador = new Trabajador();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre del trabajador: ");
@@ -229,9 +230,12 @@ public class Admin extends Personal implements Usuario {
 		nuevoTrabajador.setEmail(br.readLine());
 		System.out.println("\nIntroduce el teléfono del trabajador: ");
         try {
-        	nuevoTrabajador.setTelefono((Integer.parseInt(br.readLine())));
-        } catch (Exception e) {
-        	nuevoTrabajador.setTelefono(000000000);
+        	String numero = br.readLine();
+        	validarNumeroTelefono(numero);
+        	nuevoTrabajador.setTelefono(numero);
+        } catch (TelefonoNoValidoException e) {
+        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
+        	nuevoTrabajador.setTelefono("000000000");
         }
 		Date date = new Date();
 		nuevoTrabajador.setAntiguedad(date);
@@ -249,7 +253,7 @@ public class Admin extends Personal implements Usuario {
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
-	public void darAltaDelegacion() throws IOException, JAXBException {
+	private void darAltaDelegacion() throws IOException, JAXBException {
 		Delegacion nuevaDelegacion = new Delegacion();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");
@@ -258,9 +262,12 @@ public class Admin extends Personal implements Usuario {
 		nuevaDelegacion.setIdDelegacion(br.readLine());
 		System.out.println("\nIntroduce el teléfono de la delegación: ");
         try {
-        	nuevaDelegacion.setTelefono((Integer.parseInt(br.readLine())));
-        } catch (Exception e) {
-        	nuevaDelegacion.setTelefono(000000000);
+        	String numero = br.readLine();
+        	validarNumeroTelefono(numero);
+        	nuevaDelegacion.setTelefono(numero);
+        } catch (TelefonoNoValidoException e) {
+        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
+        	nuevaDelegacion.setTelefono("000000000");
         }
 		System.out.println("\nEs sede central (S/N): ");
 		if (br.readLine().equalsIgnoreCase("s")) {
@@ -271,6 +278,18 @@ public class Admin extends Personal implements Usuario {
 		
 		delegacionDAO.crearNuevo(nuevaDelegacion);
 		
+	}
+	
+	/**
+	 * Metodo que valida si el numero de telefono introducido es correcto.
+	 * 
+	 * @param numero Numero de telefono introducido.
+	 */
+	private void validarNumeroTelefono(String numero) {
+		final String regexStr = "^(\\+34|0034|34)?[6789]\\d{8}$";
+		if (!Pattern.matches(regexStr, numero)) {
+			throw new TelefonoNoValidoException(numero);
+		}
 	}
 
 }

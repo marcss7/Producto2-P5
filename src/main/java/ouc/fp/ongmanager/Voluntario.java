@@ -41,7 +41,10 @@ public class Voluntario extends Personal {
 	 * @param disponibilidad Atributo que guarda la disponibilidad de la persona.
 	 * @param isInternacional Atributo que guarda si la persona colabora internacionalmente o no.
 	 */
-	public Voluntario(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados, String disponibilidad, Boolean isInternacional) {
+	public Voluntario(String nombre, String apellidos, String id, String email,
+			          String telefono, String direccion, Delegacion delegacionAsignada,
+			          Date antiguedad, ListadoProyectos proyectosAsignados,
+			          String disponibilidad, Boolean isInternacional) {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.disponibilidad = disponibilidad;
 		this.isInternacional = isInternacional;

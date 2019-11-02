@@ -47,7 +47,9 @@ public class Socio extends Persona implements Financiador{
 	 * @param idSocio Atributo que guarda el id de la persona.
 	 * @param periodicidadCuota Atributo que guarda la periodicidad de la cuota de la persona.
 	 */
-	public Socio(String nombre, String apellidos, String id, String email, int telefono, String direccion, String idSocio, TipoAportacion periodicidadCuota) {
+	public Socio(String nombre, String apellidos, String id, String email,
+			     String telefono, String direccion, String idSocio,
+			     TipoAportacion periodicidadCuota) {
 		super(nombre, apellidos, id, email, telefono, direccion);
 		this.idSocio = idSocio;
 		this.periodicidadCuota = periodicidadCuota;

@@ -51,7 +51,7 @@ public class Personal extends Persona {
 	 * @param proyectosAsignados Atributo que guarda los proyectos asignados a la persona.
 	 */
 	public Personal(String nombre, String apellidos, String id, String email,
-			        int telefono, String direccion, Delegacion delegacionAsignada,
+			        String telefono, String direccion, Delegacion delegacionAsignada,
 			        Date antiguedad, ListadoProyectos proyectosAsignados) {
 		super(nombre, apellidos, id, email, telefono, direccion);
 		this.delegacionAsignada = delegacionAsignada;

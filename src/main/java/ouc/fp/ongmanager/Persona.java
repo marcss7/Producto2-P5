@@ -24,7 +24,7 @@ public class Persona {
 	protected String apellidos;
 	protected String id;
 	protected String email;
-	protected int telefono;
+	protected String telefono;
 	protected String direccion;
 	
 	
@@ -48,7 +48,7 @@ public class Persona {
 	 * @param direccion Atributo que guarda la direccion de la persona.
 	 */
 	public Persona(String nombre, String apellidos, String id,
-			       String email, int telefono, String direccion) {
+			       String email, String telefono, String direccion) {
 		super();
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -143,7 +143,7 @@ public class Persona {
 	 * @return Nos devuelve el email de la persona.
 	 */
 	@XmlElement(name = "telefono")
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
@@ -152,7 +152,7 @@ public class Persona {
 	 * 
 	 * @param telefono El telefono de la persona.
 	 */
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

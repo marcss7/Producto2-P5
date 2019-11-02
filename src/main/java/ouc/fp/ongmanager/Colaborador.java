@@ -39,7 +39,9 @@ public class Colaborador extends Personal {
 	 * @param proyectosAsignados Atributo que guarda los proyectos asignados a la persona.
 	 * @param actividad Atributo que guarda la actividad en la que colabora la persona. 
 	 */
-	public Colaborador(String nombre, String apellidos, String id, String email, int telefono, String direccion, Delegacion delegacionAsignada, Date antiguedad, ListadoProyectos proyectosAsignados, String actividad) {
+	public Colaborador(String nombre, String apellidos, String id, String email,
+			           String telefono, String direccion, Delegacion delegacionAsignada,
+			           Date antiguedad, ListadoProyectos proyectosAsignados, String actividad) {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.actividad = actividad;
 	}

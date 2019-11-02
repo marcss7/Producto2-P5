@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -62,9 +63,9 @@ public class Trabajador extends Personal implements Usuario {
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public Trabajador(String nombre, String apellidos, String id, String email,
-			int telefono, String direccion, Delegacion delegacionAsignada,
-			Date antiguedad, ListadoProyectos proyectosAsignados,
-			String horarioLaboral, String pass) throws JAXBException {
+					  String telefono, String direccion, Delegacion delegacionAsignada,
+					  Date antiguedad, ListadoProyectos proyectosAsignados,
+					  String horarioLaboral, String pass) throws JAXBException {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.horarioLaboral = horarioLaboral;
 		this.pass = pass;
@@ -216,7 +217,7 @@ public class Trabajador extends Personal implements Usuario {
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
-	public void darAltaSocio() throws IOException, JAXBException {
+	private void darAltaSocio() throws IOException, JAXBException {
 
 		Socio nuevoSocio = new Socio();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -230,9 +231,12 @@ public class Trabajador extends Personal implements Usuario {
 		nuevoSocio.setEmail(br.readLine());
 		System.out.println("\nIntroduce el teléfono del socio: ");
         try {
-        	nuevoSocio.setTelefono((Integer.parseInt(br.readLine())));
-        } catch (Exception e) {
-        	nuevoSocio.setTelefono(000000000);
+        	String numero = br.readLine();
+        	validarNumeroTelefono(numero);
+        	nuevoSocio.setTelefono(numero);
+        } catch (TelefonoNoValidoException e) {
+        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
+        	nuevoSocio.setTelefono("000000000");
         }
 		System.out.println("\nIntroduce el tipo de aportacion del socio (M/T/A): ");
 		switch (br.readLine()) {
@@ -254,6 +258,18 @@ public class Trabajador extends Personal implements Usuario {
 
 		socioDAO.crearNuevo(nuevoSocio);
 
+	}
+	
+	/**
+	 * Metodo que valida si el numero de telefono introducido es correcto.
+	 * 
+	 * @param numero Numero de telefono introducido.
+	 */
+	private void validarNumeroTelefono(String numero) {
+		final String regexStr = "^(\\+34|0034|34)?[6789]\\d{8}$";
+		if (!Pattern.matches(regexStr, numero)) {
+			throw new TelefonoNoValidoException(numero);
+		}
 	}
 
 }
