@@ -29,7 +29,7 @@ public class ListadoFinanciadores {
 	/**
 	 * Constructor que llama a un nuevo objeto listadoFinanciadores inicializando sus campos.
 	 * 
-	 * @param listadoFinanciadores
+	 * @param listadoFinanciadores Listado con todos los financiadores de la ONG.
 	 */
 	public ListadoFinanciadores(ArrayList<Financiador> listadoFinanciadores) {
 		super();

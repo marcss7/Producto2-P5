@@ -32,7 +32,7 @@ public class ListadoSocios {
 	/**
 	 * Constructor que llama a un nuevo objeto ListadoSocios inicializando sus campos.
 	 * 
-	 * @param listadoSocios
+	 * @param listadoSocios Listado con todos los socios de la ONG.
 	 */
 	public ListadoSocios(ArrayList<Socio> listadoSocios) {
 		super();

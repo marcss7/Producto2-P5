@@ -32,7 +32,7 @@ public class ListadoDelegaciones {
 	/**
 	 * Constructor que llama a un nuevo objeto ListadoDelegaciones inicializando sus campos.
 	 * 
-	 * @param listadoDelegaciones
+	 * @param listadoDelegaciones Listado con todas las delegaciones de la ONG.
 	 */
 	public ListadoDelegaciones(ArrayList<Delegacion> listadoDelegaciones) {
 		super();
