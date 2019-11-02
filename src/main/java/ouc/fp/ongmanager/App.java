@@ -8,8 +8,11 @@ import java.util.Arrays;
 import javax.xml.bind.JAXBException;
 
 /**
- * Hello world!
- *
+ * Clase que contiene el main que lanza la aplicación.
+ * 
+ * @author Yaiza, Teresa y Marc.
+ * @version 1.0
+ * 
  */
 public class App {
 	
