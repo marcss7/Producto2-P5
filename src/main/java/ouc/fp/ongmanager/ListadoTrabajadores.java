@@ -72,6 +72,7 @@ public class ListadoTrabajadores {
         if (this.listadoTrabajadores == null) {
             this.listadoTrabajadores = new ArrayList<Trabajador>();
         }
+        
         this.listadoTrabajadores.add(t);
 
     }

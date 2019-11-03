@@ -83,6 +83,7 @@ public class XMLDelegacionDAO implements DAO<Delegacion>{
 	  	}
 	    
 	    mar.marshal(d, new File("xml/delegacion.xml"));
+	    
 		System.out.println("Se ha creado una nueva delegación");
 	}
 

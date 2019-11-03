@@ -134,6 +134,7 @@ public class XMLTrabajadorDAO implements DAO<Trabajador>{
 	    	for (Trabajador t : listadoTrabajadores.getListadoTrabajadores()) {
 	    		System.out.println(t.toString());
 	    	}
+	    	
 	    	JAXBContext context = JAXBContext.newInstance(ListadoTrabajadores.class);
 	    	Marshaller marshaller = context.createMarshaller();
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

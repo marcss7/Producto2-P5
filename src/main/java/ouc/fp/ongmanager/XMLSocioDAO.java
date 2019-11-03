@@ -83,6 +83,7 @@ public class XMLSocioDAO implements DAO<Socio> {
 	  	}
 	  	
 	    mar.marshal(s, new File("xml/socio.xml"));
+
 		System.out.println("Se ha creado un nuevo socio");
 	}
 
