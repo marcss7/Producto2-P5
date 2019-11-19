@@ -224,7 +224,7 @@ public class Admin extends Personal implements Usuario {
 		nuevoTrabajador.setNombre(br.readLine());
 		System.out.println("\nIntroduce los apellidos del trabajador: ");
 		nuevoTrabajador.setApellidos(br.readLine());
-		System.out.println("\nIntroduce el ID del trabajador: ");
+		System.out.println("\nIntroduce el NIF del trabajador: ");
 		nuevoTrabajador.setId(br.readLine());
 		System.out.println("\nIntroduce el email del trabajador: ");
 		nuevoTrabajador.setEmail(br.readLine());
@@ -258,8 +258,6 @@ public class Admin extends Personal implements Usuario {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");
 		nuevaDelegacion.setNombreDelegacion(br.readLine());
-		System.out.println("\nIntroduce el ID de la delegación: ");
-		nuevaDelegacion.setIdDelegacion(br.readLine());
 		System.out.println("\nIntroduce el teléfono de la delegación: ");
         try {
         	String numero = br.readLine();

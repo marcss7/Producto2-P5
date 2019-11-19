@@ -24,13 +24,14 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name = "trabajador")
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-@XmlType(propOrder={"horarioLaboral", "pass"})
+@XmlType(propOrder={"idTrabajador", "horarioLaboral", "pass"})
 public class Trabajador extends Personal implements Usuario {
 
 	// CAMPOS
 
 	private String horarioLaboral;
 	private String pass;
+	private int idTrabajador;
 	private DAOFactory xmlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.XML);
 	private DAO<Socio> socioDAO = (XMLSocioDAO) xmlDAOFactory.getSocioDAO();
 
@@ -60,15 +61,17 @@ public class Trabajador extends Personal implements Usuario {
 	 * @param proyectosAsignados Atributo que guarda los proyectos asignados a la persona.
 	 * @param horarioLaboral Atributo que guarda el horario laboral de la persona.
 	 * @param pass Atributo que guarda la password de loggin de la persona.
+	 * @param id_trabajador Atributo que guarda el id del trabajador.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public Trabajador(String nombre, String apellidos, String id, String email,
 					  String telefono, String direccion, Delegacion delegacionAsignada,
 					  Date antiguedad, ListadoProyectos proyectosAsignados,
-					  String horarioLaboral, String pass) throws JAXBException {
+					  String horarioLaboral, String pass, int idTrabajador) throws JAXBException {
 		super(nombre, apellidos, id, email, telefono, direccion, delegacionAsignada, antiguedad, proyectosAsignados);
 		this.horarioLaboral = horarioLaboral;
 		this.pass = pass;
+		this.idTrabajador = idTrabajador;
 	}
 
 
@@ -112,6 +115,25 @@ public class Trabajador extends Personal implements Usuario {
 	 */
 	public void setPass(String pass) {
 		this.pass = pass;
+	}
+	
+	/**
+	 * Metodo accesor de lectura que nos da el id del trabajador.
+	 * 
+	 * @return Nos devuelve el id del trabajador.
+	 */
+	@XmlElement(name = "idTrabajador")
+	public int getIdTrabajador() {
+		return idTrabajador;
+	}
+
+	/**
+	 * Metodo accesor de lectura que asigna el id del trabajador.
+	 * 
+	 * @param id_trabajador El id del trabajador.
+	 */
+	public void setIdTrabajador(int idTrabajador) {
+		this.idTrabajador = idTrabajador;
 	}
 
 	/**
@@ -225,8 +247,6 @@ public class Trabajador extends Personal implements Usuario {
 		nuevoSocio.setNombre(br.readLine());
 		System.out.println("\nIntroduce los apellidos del socio: ");
 		nuevoSocio.setApellidos(br.readLine());
-		System.out.println("\nIntroduce el ID del socio: ");
-		nuevoSocio.setIdSocio(br.readLine());
 		System.out.println("\nIntroduce el email del socio: ");
 		nuevoSocio.setEmail(br.readLine());
 		System.out.println("\nIntroduce el teléfono del socio: ");
@@ -255,7 +275,8 @@ public class Trabajador extends Personal implements Usuario {
 			default:
 				break;
 		}
-
+		System.out.println("\nIntroduce el importe de la cuota del socio: ");
+		nuevoSocio.setImporteCuota(Float.parseFloat(br.readLine()));
 		socioDAO.crearNuevo(nuevoSocio);
 
 	}

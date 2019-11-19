@@ -14,10 +14,10 @@ public class XMLTrabajadorDAOTest {
 	public void testBorrar() throws JAXBException {
 
 		//Inicializamos cuatro trabajadores que utilizaremos para las pruebas (importante que tengan ID definida).
-		Trabajador t1 = new Trabajador("Jorge", "Masvidal", "22I", null, null, null, null, null, null, null, null);
-		Trabajador t2 = new Trabajador("Maria", "Rodriguez", "82E", null, null, null, null, null, null, null, null);
-		Trabajador t3 = new Trabajador("Sara", "Gomez", "75S", null, null, null, null, null, null, null, null);
-		Trabajador t4 = new Trabajador("Pablo", "Costa", "99M", null, null, null, null, null, null, null, null);
+		Trabajador t1 = new Trabajador("Jorge", "Masvidal", "22I", null, null, null, null, null, null, null, null, 0);
+		Trabajador t2 = new Trabajador("Maria", "Rodriguez", "82E", null, null, null, null, null, null, null, null, 0);
+		Trabajador t3 = new Trabajador("Sara", "Gomez", "75S", null, null, null, null, null, null, null, null, 0);
+		Trabajador t4 = new Trabajador("Pablo", "Costa", "99M", null, null, null, null, null, null, null, null, 0);
 
 		//Creamos un listado de trabajadores.
 		List<Trabajador> listadoTrabajadores = new ArrayList<Trabajador>();

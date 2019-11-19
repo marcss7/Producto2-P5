@@ -18,12 +18,13 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlRootElement(name = "socio")
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-@XmlType(propOrder={"idSocio", "periodicidadCuota"})
+@XmlType(propOrder={"idSocio", "periodicidadCuota", "importeCuota"})
 public class Socio extends Persona implements Financiador{
 	
 	// CAMPOS
-	private String idSocio;
+	private int idSocio;
 	private TipoAportacion periodicidadCuota;
+	private float importeCuota;
 	
 	
 	// CONSTRUCTORES
@@ -46,13 +47,15 @@ public class Socio extends Persona implements Financiador{
 	 * @param direccion Atributo que guarda la direccion de la persona.
 	 * @param idSocio Atributo que guarda el id de la persona.
 	 * @param periodicidadCuota Atributo que guarda la periodicidad de la cuota de la persona.
+	 * @param importeCuota Atributo que guarda el importe de la cuota de la persona.
 	 */
 	public Socio(String nombre, String apellidos, String id, String email,
-			     String telefono, String direccion, String idSocio,
-			     TipoAportacion periodicidadCuota) {
+			     String telefono, String direccion, int idSocio,
+			     TipoAportacion periodicidadCuota, float importeCuota) {
 		super(nombre, apellidos, id, email, telefono, direccion);
 		this.idSocio = idSocio;
 		this.periodicidadCuota = periodicidadCuota;
+		this.importeCuota = importeCuota;
 	}
 
 	
@@ -64,7 +67,7 @@ public class Socio extends Persona implements Financiador{
 	 * @return Nos devuelve el id del socio.
 	 */
 	@XmlElement(name = "idSocio")
-	public String getIdSocio() {
+	public int getIdSocio() {
 		return idSocio;
 	}
 
@@ -74,7 +77,7 @@ public class Socio extends Persona implements Financiador{
 	 * 
 	 * @param idSocio El id del socio
 	 */
-	public void setIdSocio(String idSocio) {
+	public void setIdSocio(int idSocio) {
 		this.idSocio = idSocio;
 	}
 
@@ -95,6 +98,25 @@ public class Socio extends Persona implements Financiador{
 	 */
 	public void setPeriodicidadCuota(TipoAportacion periodicidadCuota) {
 		this.periodicidadCuota = periodicidadCuota;
+	}
+	
+	/**
+	 * Metodo accesor de lectura que nos da el imporye de la cuota del socio.
+	 * 
+	 * @return Nos devuelve el importe de la cuota.
+	 */
+	@XmlElement(name = "importeCuota")
+	public float getImporteCuota() {
+		return importeCuota;
+	}
+
+	/**
+	 * Metodo accesor de escritura que asigna el importe de la cuota del socio.
+	 * 
+	 * @param importe_cuota El importe de la cuota.
+	 */
+	public void setImporteCuota(float importeCuota) {
+		this.importeCuota = importeCuota;
 	}
 
 

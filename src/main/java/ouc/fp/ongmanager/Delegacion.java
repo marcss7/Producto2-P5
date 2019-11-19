@@ -23,7 +23,7 @@ public class Delegacion {
 	
 	// CAMPOS
 	private String nombreDelegacion;
-	private String idDelegacion;
+	private int idDelegacion;
 	private String direccion;
 	private String telefono;
 	private ArrayList<Personal> personalAdscrito;
@@ -52,7 +52,7 @@ public class Delegacion {
 	 * @param listadoProyectos Atributo que guarda el listado de proyectos de la delegacion.
 	 * @param isSedeCentral Atributo que guarda el id de la sede central a la que pertenece la delegacion. 
 	 */
-	public Delegacion(String nombreDelegacion, String idDelegacion, String direccion, String telefono,
+	public Delegacion(String nombreDelegacion, int idDelegacion, String direccion, String telefono,
 			ArrayList<Personal> personalAdscrito, ArrayList<Proyecto> listadoProyectos, Boolean isSedeCentral) {
 		super();
 		this.nombreDelegacion = nombreDelegacion;
@@ -93,7 +93,7 @@ public class Delegacion {
 	 * @return id de la delegacion.
 	 */
 	@XmlElement(name = "id")
-	public String getIdDelegacion() {
+	public int getIdDelegacion() {
 		return idDelegacion;
 	}
 
@@ -102,7 +102,7 @@ public class Delegacion {
 	 * 
 	 * @param idDelegacion id de la delegacion
 	 */
-	public void setIdDelegacion(String idDelegacion) {
+	public void setIdDelegacion(int idDelegacion) {
 		this.idDelegacion = idDelegacion;
 	}
 

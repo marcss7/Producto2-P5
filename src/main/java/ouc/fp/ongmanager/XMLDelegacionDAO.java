@@ -158,9 +158,9 @@ public class XMLDelegacionDAO implements DAO<Delegacion>{
 	 * @param id Id de la delegacion buscada.
 	 * @return Delegacion buscada.
 	 */
-    public Delegacion encontrarDelegacionPorId(String id) {
+    public Delegacion encontrarDelegacionPorId(int id) {
     	for (Delegacion d : listadoDelegaciones.getListadoDelegaciones()) {
-    		if (d.getIdDelegacion().equals(id)) {
+    		if (d.getIdDelegacion() == id) {
     			return d;
     		}
     	}
