@@ -161,7 +161,7 @@ public class Persona {
 	 * 
 	 * @return Nos devuelve la direccion de la persona. 
 	 */
-	@XmlElement(name = "nombre")
+	@XmlElement(name = "direccion")
 	public String getDireccion() {
 		return direccion;
 	}

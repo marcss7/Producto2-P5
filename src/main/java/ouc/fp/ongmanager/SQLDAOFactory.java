@@ -16,9 +16,8 @@ public class SQLDAOFactory extends DAOFactory {
 	 * @return Nos devuelve un trabajador SQL data object
 	 */
 	@Override
-	public DAO<Trabajador> getTrabajadorDAO() {
-		// TODO Auto-generated method stub
-		return null;
+	public SQLTrabajadorDAO getTrabajadorDAO() {
+		return new SQLTrabajadorDAO();
 	}
 
 	/**
@@ -27,9 +26,9 @@ public class SQLDAOFactory extends DAOFactory {
 	 * @return Nos devuelve un socio SQL data object
 	 */
 	@Override
-	public DAO<Socio> getSocioDAO() {
+	public SQLSocioDAO getSocioDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SQLSocioDAO();
 	}
 
 	/**
@@ -38,9 +37,9 @@ public class SQLDAOFactory extends DAOFactory {
 	 * @return Nos devuelve un delegacion SQL data object
 	 */
 	@Override
-	public DAO<Delegacion> getDelegacionDAO() {
+	public SQLDelegacionDAO getDelegacionDAO() {
 		// TODO Auto-generated method stub
-		return null;
+		return new SQLDelegacionDAO();
 	}
 
 }

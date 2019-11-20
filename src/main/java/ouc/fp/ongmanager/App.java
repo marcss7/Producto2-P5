@@ -6,6 +6,10 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Clase que contiene el main que lanza la aplicación.
@@ -16,7 +20,7 @@ import javax.xml.bind.JAXBException;
  */
 public class App {
 	
-	public static void main( String[] args ) throws IOException, JAXBException {
+	public static void main( String[] args ) throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 		
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
     	int respuesta = 0;
