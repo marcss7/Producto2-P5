@@ -33,7 +33,7 @@ public class App {
     	
         do {
         	System.out.println("\nPor favor, introduce el número de la acción que deseas realizar: ");
-        	System.out.println("1 - Iniciar sesión como adminitrador");
+        	System.out.println("1 - Iniciar sesión como administrador");
         	System.out.println("2 - Iniciar sesión como empleado");
         	System.out.println("3 - Salir");
         	
