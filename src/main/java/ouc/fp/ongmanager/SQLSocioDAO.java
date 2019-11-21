@@ -77,6 +77,7 @@ public class SQLSocioDAO implements DAO<Socio> {
 			stmt.setDouble(8, Double.parseDouble(getTextContent(n, "importeCuota")));
 			stmt.executeUpdate();
 			conn.connect().commit();
+			System.out.println("Se ha creado un nuevo socio: " + s.getNombre() + " " + s.getApellidos());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,8 +85,6 @@ public class SQLSocioDAO implements DAO<Socio> {
 		} finally {
 			conn.disconnect();
 		}
-		
-		System.out.println("Se ha creado un nuevo socio: " + s.getNombre() + " " + s.getApellidos());
 		
 	}
 

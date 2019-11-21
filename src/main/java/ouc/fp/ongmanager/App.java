@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
  */
 public class App {
 	
-	public static void main( String[] args ) throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
+	public static void main( String[] args ) throws IOException, JAXBException, ParserConfigurationException, SAXException, SQLException, XPathExpressionException {
 		
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
     	int respuesta = 0;

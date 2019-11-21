@@ -29,8 +29,11 @@ public class Admin extends Personal implements Usuario {
 	
 	private String rootPass;
 	private DAOFactory xmlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.XML);
-	private DAO<Trabajador> trabajadorDAO = (XMLTrabajadorDAO) xmlDAOFactory.getTrabajadorDAO();
-	private DAO<Delegacion> delegacionDAO = (XMLDelegacionDAO) xmlDAOFactory.getDelegacionDAO();
+	private DAOFactory sqlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.SQL);
+	private DAO<Trabajador> xmlTrabajadorDAO = (XMLTrabajadorDAO) xmlDAOFactory.getTrabajadorDAO();
+	private DAO<Trabajador> sqlTrabajadorDAO = (SQLTrabajadorDAO) sqlDAOFactory.getTrabajadorDAO();
+	private DAO<Delegacion> xmlDelegacionDAO = (XMLDelegacionDAO) xmlDAOFactory.getDelegacionDAO();
+	private DAO<Delegacion> sqlDelegacionDAO = (SQLDelegacionDAO) sqlDAOFactory.getDelegacionDAO();
 	
 	
 	// CONSTRUCTORES
@@ -206,7 +209,7 @@ public class Admin extends Personal implements Usuario {
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public void imprimirListadoTrabajadores() throws JAXBException {
-		trabajadorDAO.obtenerTodos();
+		xmlTrabajadorDAO.obtenerTodos();
 	}
 	
 	/**
@@ -216,7 +219,7 @@ public class Admin extends Personal implements Usuario {
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public void imprimirListadoDelegaciones() throws JAXBException {
-		delegacionDAO.obtenerTodos();
+		xmlDelegacionDAO.obtenerTodos();
 	}
 	
 	/**
@@ -250,12 +253,21 @@ public class Admin extends Personal implements Usuario {
         	System.out.println("Número no válido, podrá modificarlo más adelante"); 
         	nuevoTrabajador.setTelefono("000000000");
         }
+		System.out.println("\nIntroduce la dirección del trabajador: ");
+		nuevoTrabajador.setDireccion(br.readLine());
+		System.out.println("\nIntroduce la delegación del trabajador: ");
+		Delegacion d = new Delegacion();
+		d.setIdDelegacion(Integer.parseInt(br.readLine()));
+		nuevoTrabajador.setDelegacionAsignada(d);
+		System.out.println("\nIntroduce el horario del trabajador: ");
+		nuevoTrabajador.setHorarioLaboral(br.readLine());
 		Date date = new Date();
 		nuevoTrabajador.setAntiguedad(date);
 		Random random = new Random();
 		String pass = String.format("%06d", random.nextInt(1000000));
 		nuevoTrabajador.setPass(pass);
-		trabajadorDAO.crearNuevo(nuevoTrabajador);
+		xmlTrabajadorDAO.crearNuevo(nuevoTrabajador);
+		sqlTrabajadorDAO.crearNuevo(nuevoTrabajador);
 		
 	}
 	
@@ -275,6 +287,8 @@ public class Admin extends Personal implements Usuario {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");
 		nuevaDelegacion.setNombreDelegacion(br.readLine());
+		System.out.println("\nIntroduce la dirección de la delegación: ");
+		nuevaDelegacion.setDireccion(br.readLine());
 		System.out.println("\nIntroduce el teléfono de la delegación: ");
         try {
         	String numero = br.readLine();
@@ -291,7 +305,8 @@ public class Admin extends Personal implements Usuario {
 			nuevaDelegacion.setIsSedeCentral(false);			
 		}
 		
-		delegacionDAO.crearNuevo(nuevaDelegacion);
+		xmlDelegacionDAO.crearNuevo(nuevaDelegacion);
+		sqlDelegacionDAO.crearNuevo(nuevaDelegacion);
 		
 	}
 	

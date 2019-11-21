@@ -10,7 +10,7 @@ public class MySQLUtil {
     private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DATABASE_URL = "jdbc:mysql://127.0.0.1:3306/ong_db?&serverTimezone=UTC";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "12345";
     private static final String MAX_POOL = "250";
 
     private Connection connection;

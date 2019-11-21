@@ -68,8 +68,8 @@ public class Personal extends Persona {
 	 * @return Nos devuelve la delegacion asignada a la persona. 
 	 */
 	@XmlElement(name = "delegacion")
-	public Delegacion getDelegacionAsignada() {
-		return delegacionAsignada;
+	public int getDelegacionAsignada() {
+		return delegacionAsignada.getIdDelegacion();
 	}
 
 	/**
