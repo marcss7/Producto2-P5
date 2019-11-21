@@ -83,8 +83,6 @@ public class XMLSocioDAO implements DAO<Socio> {
 	  	}
 	  	
 	    mar.marshal(s, new File("xml/socio.xml"));
-
-		System.out.println("Se ha creado un nuevo socio");
 	}
 
 	/**
@@ -96,7 +94,6 @@ public class XMLSocioDAO implements DAO<Socio> {
 	@Override
 	public Optional<Socio> obtener(String id) {
 		System.out.println("Se ha obtenido un socio");
-        //return encontrarTrabajadorPorId(id); 
 		return null;
 	}
 
@@ -119,7 +116,7 @@ public class XMLSocioDAO implements DAO<Socio> {
 	 */
 	@Override
 	public void borrar(Socio s) {
-        System.out.println("El socio con ID " + s.getId() + "ha sido eliminado"); 
+        System.out.println("El socio con ID " + s.getId() + " ha sido eliminado"); 
 	}
 
 	/**
