@@ -3,6 +3,7 @@ package ouc.fp.ongmanager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
@@ -95,9 +96,10 @@ public class Admin extends Personal implements Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
 	@Override
-	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 		    	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int respuestaOpcion = 0;
@@ -226,8 +228,9 @@ public class Admin extends Personal implements Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
-	private void darAltaTrabajador() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	private void darAltaTrabajador() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 		Trabajador nuevoTrabajador = new Trabajador();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre del trabajador: ");
@@ -265,8 +268,9 @@ public class Admin extends Personal implements Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
-	private void darAltaDelegacion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	private void darAltaDelegacion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 		Delegacion nuevaDelegacion = new Delegacion();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");

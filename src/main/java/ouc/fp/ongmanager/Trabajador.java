@@ -3,6 +3,7 @@ package ouc.fp.ongmanager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -148,9 +149,10 @@ public class Trabajador extends Personal implements Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
 	@Override
-	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
 		int respuestaOpcion = 0;
 		Integer[] opcionesValidas = {1, 2, 3};
@@ -250,8 +252,9 @@ public class Trabajador extends Personal implements Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
-	private void darAltaSocio() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	private void darAltaSocio() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 
 		Socio nuevoSocio = new Socio();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

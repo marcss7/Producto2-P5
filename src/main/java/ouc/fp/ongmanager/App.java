@@ -3,6 +3,7 @@ package ouc.fp.ongmanager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.Arrays;
 
 import javax.xml.bind.JAXBException;
@@ -20,7 +21,7 @@ import org.xml.sax.SAXException;
  */
 public class App {
 	
-	public static void main( String[] args ) throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
+	public static void main( String[] args ) throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException {
 		
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
     	int respuesta = 0;

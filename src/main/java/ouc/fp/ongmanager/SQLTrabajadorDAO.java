@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
@@ -14,7 +13,7 @@ public class SQLTrabajadorDAO implements DAO<Trabajador> {
 
 	@Override
 	public void crearNuevo(Trabajador t)
-			throws JAXBException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+			throws JAXBException, ParserConfigurationException, SAXException, IOException {
 		// TODO Auto-generated method stub
 		
 	}

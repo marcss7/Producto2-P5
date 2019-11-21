@@ -1,6 +1,7 @@
 package ouc.fp.ongmanager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.parsers.ParserConfigurationException;
@@ -27,8 +28,9 @@ public interface Usuario {
 	 * @throws SAXException 
 	 * @throws ParserConfigurationException 
 	 * @throws XPathExpressionException 
+	 * @throws SQLException 
 	 */
-	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException;
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException, SQLException;
 	
 	/**
 	 * Metodo que permite al usuario consultar el listado de proyectos

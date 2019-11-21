@@ -11,7 +11,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -33,9 +32,10 @@ public class SQLSocioDAO implements DAO<Socio> {
 	 * Socio a partir de los datos almancenados en formato XML.
 	 * 
 	 * @param s Objeto socio a persistir.
+	 * @throws SQLException 
 	 */
 	@Override
-	public void crearNuevo(Socio s) throws JAXBException, ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+	public void crearNuevo(Socio s) throws JAXBException, ParserConfigurationException, SAXException, IOException, SQLException {
 		
 		MySQLUtil conn = new MySQLUtil();
 		File file = new File("xml/socio.xml");
@@ -44,13 +44,11 @@ public class SQLSocioDAO implements DAO<Socio> {
 		Document xmlDoc = builder.parse(file);
 		xmlDoc.getDocumentElement().normalize();
 
-		String sql = "INSERT INTO socios(\n" +
-				"  nombre, apellidos, nif, email, telefono,\n" +
-				"  direccion, cuota, importe_cuota)\n" +
-				"VALUES(?, ?, ?, ?, ?,\n" +
-				"?, ?, ?)";
+		String sql = "INSERT INTO socios(nombre, apellidos, nif, email, telefono, direccion, cuota, importe_cuota)\n" +
+				     "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		try {
+			conn.connect().setAutoCommit(false);
 			PreparedStatement stmt = conn.connect().prepareStatement(sql);
 			Node n = xmlDoc.getDocumentElement();
 			
@@ -78,9 +76,11 @@ public class SQLSocioDAO implements DAO<Socio> {
 			
 			stmt.setDouble(8, Double.parseDouble(getTextContent(n, "importeCuota")));
 			stmt.executeUpdate();
+			conn.connect().commit();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			conn.connect().rollback();
 		} finally {
 			conn.disconnect();
 		}
