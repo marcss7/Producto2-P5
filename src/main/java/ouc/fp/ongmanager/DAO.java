@@ -1,9 +1,14 @@
 package ouc.fp.ongmanager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Interfaz que proporciona acceso a los metodos de persistencia.
@@ -19,8 +24,12 @@ public interface DAO<T> {
 	 * 
 	 * @param t Objeto a persistir.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
+	 * @throws ParserConfigurationException 
+	 * @throws IOException 
+	 * @throws SAXException 
+	 * @throws XPathExpressionException 
 	 */
-    public void crearNuevo(T t) throws JAXBException;
+    public void crearNuevo(T t) throws JAXBException, ParserConfigurationException, SAXException, IOException, XPathExpressionException;
     
 	/**
 	 * Metodo para obtener un objeto persistido.

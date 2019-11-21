@@ -3,6 +3,10 @@ package ouc.fp.ongmanager;
 import java.io.IOException;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Interfaz que implementan todas aquellas clases que
@@ -20,8 +24,11 @@ public interface Usuario {
 	 * 
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
-	public void abrirSesion() throws IOException, JAXBException;
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException;
 	
 	/**
 	 * Metodo que permite al usuario consultar el listado de proyectos

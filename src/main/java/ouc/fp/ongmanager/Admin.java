@@ -9,6 +9,10 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 import javax.xml.bind.JAXBException;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Esta clase representa a la persona encargada de crear los proyectos, modificarlos,
@@ -88,9 +92,12 @@ public class Admin extends Personal implements Usuario {
 	/**
 	 * Metodo que genera el menu de acciones que puede realizar el admin
 	 * en la aplicacion cuando inicia sesion.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
 	@Override
-	public void abrirSesion() throws IOException, JAXBException {
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 		    	
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int respuestaOpcion = 0;
@@ -216,8 +223,11 @@ public class Admin extends Personal implements Usuario {
 	 * 
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
-	private void darAltaTrabajador() throws IOException, JAXBException {
+	private void darAltaTrabajador() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 		Trabajador nuevoTrabajador = new Trabajador();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre del trabajador: ");
@@ -252,8 +262,11 @@ public class Admin extends Personal implements Usuario {
 	 * 
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
-	private void darAltaDelegacion() throws IOException, JAXBException {
+	private void darAltaDelegacion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 		Delegacion nuevaDelegacion = new Delegacion();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("\nIntroduce el nombre de la delegación: ");

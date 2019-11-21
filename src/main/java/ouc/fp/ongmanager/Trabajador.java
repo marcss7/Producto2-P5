@@ -13,6 +13,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 /**
  * Esta clase representa a cada uno de los miembros del personal de la ONG
@@ -33,7 +37,9 @@ public class Trabajador extends Personal implements Usuario {
 	private String pass;
 	private int idTrabajador;
 	private DAOFactory xmlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.XML);
-	private DAO<Socio> socioDAO = (XMLSocioDAO) xmlDAOFactory.getSocioDAO();
+	private DAO<Socio> xmlSocioDAO = (XMLSocioDAO) xmlDAOFactory.getSocioDAO();
+	private DAOFactory sqlDAOFactory = DAOFactory.getDAOFactory(DAOFactory.SQL);
+	private DAO<Socio> sqlSocioDAO = (SQLSocioDAO) sqlDAOFactory.getSocioDAO();
 
 
 	// CONSTRUCTORES
@@ -139,9 +145,12 @@ public class Trabajador extends Personal implements Usuario {
 	/**
 	 * Metodo que genera el menu de acciones que puede realizar el trabajador
 	 * en la aplicacion cuando inicia sesion.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
 	@Override
-	public void abrirSesion() throws IOException, JAXBException {
+	public void abrirSesion() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); 
 		int respuestaOpcion = 0;
 		Integer[] opcionesValidas = {1, 2, 3};
@@ -229,7 +238,7 @@ public class Trabajador extends Personal implements Usuario {
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
 	 */
 	public void imprimirListadoSocios() throws JAXBException {
-		socioDAO.obtenerTodos();
+		xmlSocioDAO.obtenerTodos();
 	}
 
 	/**
@@ -238,8 +247,11 @@ public class Trabajador extends Personal implements Usuario {
 	 * 
 	 * @throws IOException si se produce un error de entrada/salida.
 	 * @throws JAXBException si se produce una excepción de tipo JAXB.
+	 * @throws SAXException 
+	 * @throws ParserConfigurationException 
+	 * @throws XPathExpressionException 
 	 */
-	private void darAltaSocio() throws IOException, JAXBException {
+	private void darAltaSocio() throws IOException, JAXBException, XPathExpressionException, ParserConfigurationException, SAXException {
 
 		Socio nuevoSocio = new Socio();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -247,6 +259,8 @@ public class Trabajador extends Personal implements Usuario {
 		nuevoSocio.setNombre(br.readLine());
 		System.out.println("\nIntroduce los apellidos del socio: ");
 		nuevoSocio.setApellidos(br.readLine());
+		System.out.println("\nIntroduce el NIF del socio: ");
+		nuevoSocio.setId(br.readLine());
 		System.out.println("\nIntroduce el email del socio: ");
 		nuevoSocio.setEmail(br.readLine());
 		System.out.println("\nIntroduce el teléfono del socio: ");
@@ -258,6 +272,8 @@ public class Trabajador extends Personal implements Usuario {
         	System.out.println("Número no válido, podrá modificarlo más adelante"); 
         	nuevoSocio.setTelefono("000000000");
         }
+		System.out.println("\nIntroduce la dirección del socio: ");
+		nuevoSocio.setDireccion(br.readLine());
 		System.out.println("\nIntroduce el tipo de aportacion del socio (M/T/A): ");
 		switch (br.readLine()) {
 			case "M":
@@ -277,7 +293,8 @@ public class Trabajador extends Personal implements Usuario {
 		}
 		System.out.println("\nIntroduce el importe de la cuota del socio: ");
 		nuevoSocio.setImporteCuota(Float.parseFloat(br.readLine()));
-		socioDAO.crearNuevo(nuevoSocio);
+		xmlSocioDAO.crearNuevo(nuevoSocio);
+		sqlSocioDAO.crearNuevo(nuevoSocio);
 
 	}
 	
