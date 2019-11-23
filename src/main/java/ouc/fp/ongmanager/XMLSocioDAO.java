@@ -127,8 +127,12 @@ public class XMLSocioDAO implements DAO<Socio> {
 	@Override
 	public List<Socio> obtenerTodos() throws JAXBException {
 		if (listadoSocios.getListadoSocios() != null) {
+			if(listadoSocios.getListadoSocios().size() > 1) {
 			System.out.println("La ONG cuenta con " + listadoSocios.getListadoSocios().size() + " socios:");
-	    	for (Socio s : listadoSocios.getListadoSocios()) {
+			} if(listadoSocios.getListadoSocios().size() == 1) {
+				System.out.println("La ONG cuenta con " + listadoSocios.getListadoSocios().size() + " socio:");
+			}
+			for (Socio s : listadoSocios.getListadoSocios()) {
 	    		System.out.println(s.toString());
 	    	}
 	    	

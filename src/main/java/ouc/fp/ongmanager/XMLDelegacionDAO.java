@@ -130,8 +130,12 @@ public class XMLDelegacionDAO implements DAO<Delegacion>{
 	@Override
 	public List<Delegacion> obtenerTodos() throws JAXBException {
 		if (listadoDelegaciones.getListadoDelegaciones() != null) {
+			if(listadoDelegaciones.getListadoDelegaciones().size() > 1) {
 			System.out.println("La ONG cuenta con " + listadoDelegaciones.getListadoDelegaciones().size() + " sedes:");
-	    	for (Delegacion d : listadoDelegaciones.getListadoDelegaciones()) {
+			} if (listadoDelegaciones.getListadoDelegaciones().size() == 1) {
+				System.out.println("La ONG cuenta con " + listadoDelegaciones.getListadoDelegaciones().size() + " sede:");
+			}
+			for (Delegacion d : listadoDelegaciones.getListadoDelegaciones()) {
 	    		System.out.println(d.toString());
 	    	}
 	    	JAXBContext context = JAXBContext.newInstance(ListadoDelegaciones.class);

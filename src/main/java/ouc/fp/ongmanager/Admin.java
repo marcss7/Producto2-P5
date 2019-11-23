@@ -244,21 +244,32 @@ public class Admin extends Personal implements Usuario {
 		nuevoTrabajador.setId(br.readLine());
 		System.out.println("\nIntroduce el email del trabajador: ");
 		nuevoTrabajador.setEmail(br.readLine());
+		boolean exito = false;
+		while (!exito) {
 		System.out.println("\nIntroduce el teléfono del trabajador: ");
-        try {
-        	String numero = br.readLine();
-        	validarNumeroTelefono(numero);
-        	nuevoTrabajador.setTelefono(numero);
-        } catch (TelefonoNoValidoException e) {
-        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
-        	nuevoTrabajador.setTelefono("000000000");
-        }
+			try {
+				String numero = br.readLine();
+				validarNumeroTelefono(numero);
+				nuevoTrabajador.setTelefono(numero);
+				exito = true;
+			} catch (TelefonoNoValidoException e) {
+				System.out.println("Número no válido, por favor, introduzca un número de teléfono válido."); 
+			}
+		}
 		System.out.println("\nIntroduce la dirección del trabajador: ");
 		nuevoTrabajador.setDireccion(br.readLine());
-		System.out.println("\nIntroduce la delegación del trabajador: ");
-		Delegacion d = new Delegacion();
-		d.setIdDelegacion(Integer.parseInt(br.readLine()));
-		nuevoTrabajador.setDelegacionAsignada(d);
+		exito = false;
+		while (!exito) {
+		System.out.println("\nIntroduce el número ID de la delegación del trabajador: ");
+			try {
+				Delegacion d = new Delegacion();
+				d.setIdDelegacion(Integer.parseInt(br.readLine()));
+				nuevoTrabajador.setDelegacionAsignada(d);
+				exito = true;
+			} catch (NumberFormatException e) {
+				System.out.println("La entrada recibida no es del tipo correcto, por favor, asegúrese de estar introduciendo un número entero y que este sea válido (es decir, que el ID introducido exista y este asignado en la base de datos).");
+			}
+		}
 		System.out.println("\nIntroduce el horario del trabajador: ");
 		nuevoTrabajador.setHorarioLaboral(br.readLine());
 		Date date = new Date();
@@ -289,15 +300,18 @@ public class Admin extends Personal implements Usuario {
 		nuevaDelegacion.setNombreDelegacion(br.readLine());
 		System.out.println("\nIntroduce la dirección de la delegación: ");
 		nuevaDelegacion.setDireccion(br.readLine());
-		System.out.println("\nIntroduce el teléfono de la delegación: ");
-        try {
-        	String numero = br.readLine();
-        	validarNumeroTelefono(numero);
-        	nuevaDelegacion.setTelefono(numero);
-        } catch (TelefonoNoValidoException e) {
-        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
-        	nuevaDelegacion.setTelefono("000000000");
-        }
+		boolean exito = false;
+		while (!exito) {
+			System.out.println("\nIntroduce el teléfono de la delegación: ");
+			try {
+				String numero = br.readLine();
+				validarNumeroTelefono(numero);
+				nuevaDelegacion.setTelefono(numero);
+				exito = true;
+			} catch (TelefonoNoValidoException e) {
+				System.out.println("Número no válido, por favor, introduzca un número de teléfono válido.");
+			}
+		}
 		System.out.println("\nEs sede central (S/N): ");
 		if (br.readLine().equalsIgnoreCase("s")) {
 			nuevaDelegacion.setIsSedeCentral(true);

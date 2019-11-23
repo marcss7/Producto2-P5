@@ -266,36 +266,54 @@ public class Trabajador extends Personal implements Usuario {
 		nuevoSocio.setId(br.readLine());
 		System.out.println("\nIntroduce el email del socio: ");
 		nuevoSocio.setEmail(br.readLine());
+		boolean exito = false;
+		while(!exito) {
 		System.out.println("\nIntroduce el teléfono del socio: ");
-        try {
-        	String numero = br.readLine();
-        	validarNumeroTelefono(numero);
-        	nuevoSocio.setTelefono(numero);
-        } catch (TelefonoNoValidoException e) {
-        	System.out.println("Número no válido, podrá modificarlo más adelante"); 
-        	nuevoSocio.setTelefono("000000000");
-        }
+        	try {
+        		String numero = br.readLine();
+        		validarNumeroTelefono(numero);
+        		nuevoSocio.setTelefono(numero);
+        		exito = true;
+        	} catch (TelefonoNoValidoException e) {
+        		System.out.println("Número no válido, por favor, introduzca un número de teléfono válido."); 
+        	}
+		}
 		System.out.println("\nIntroduce la dirección del socio: ");
 		nuevoSocio.setDireccion(br.readLine());
+		exito = false;
+		while (!exito) {
 		System.out.println("\nIntroduce el tipo de aportacion del socio (M/T/A): ");
-		switch (br.readLine()) {
-			case "M":
-				nuevoSocio.setPeriodicidadCuota(TipoAportacion.MENSUAL);
-				break;
-	
-			case "T":
-				nuevoSocio.setPeriodicidadCuota(TipoAportacion.TRIMESTRAL);
-				break;
-	
-			case "A":
-				nuevoSocio.setPeriodicidadCuota(TipoAportacion.ANUAL);
-				break;
-	
-			default:
-				break;
+				switch (br.readLine().toUpperCase()) {
+					case "M":
+						nuevoSocio.setPeriodicidadCuota(TipoAportacion.MENSUAL);
+						exito = true;
+						break;
+		
+					case "T":
+						nuevoSocio.setPeriodicidadCuota(TipoAportacion.TRIMESTRAL);
+						exito = true;
+						break;
+		
+					case "A":
+						nuevoSocio.setPeriodicidadCuota(TipoAportacion.ANUAL);
+						exito = true;
+						break;
+		
+					default:
+						break;
+				}
+				if(!exito) {System.out.println("Solo se aceptan los valores M, T y A, por favor, introduzca uno de los valores válidos."); }
 		}
+		exito = false;
+		while (!exito) {
 		System.out.println("\nIntroduce el importe de la cuota del socio: ");
-		nuevoSocio.setImporteCuota(Float.parseFloat(br.readLine()));
+			try {
+				nuevoSocio.setImporteCuota(Float.parseFloat(br.readLine()));
+				exito = true;
+			} catch (NumberFormatException e) {
+				System.out.println("La entrada recibida no es del tipo correcto, por favor, asegúrese de estar introduciendo un número.");
+			}
+		}
 		xmlSocioDAO.crearNuevo(nuevoSocio);
 		sqlSocioDAO.crearNuevo(nuevoSocio);
 

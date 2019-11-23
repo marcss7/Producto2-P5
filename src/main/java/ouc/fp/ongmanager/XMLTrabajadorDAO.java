@@ -130,7 +130,11 @@ public class XMLTrabajadorDAO implements DAO<Trabajador>{
 	@Override
 	public List<Trabajador> obtenerTodos() throws JAXBException {
 		if (listadoTrabajadores.getListadoTrabajadores() != null) {
+			if(listadoTrabajadores.getListadoTrabajadores().size() > 1) {
 			System.out.println("La ONG cuenta con " + listadoTrabajadores.getListadoTrabajadores().size() + " trabajadores:");
+			} if (listadoTrabajadores.getListadoTrabajadores().size() == 1) {
+				System.out.println("La ONG cuenta con " + listadoTrabajadores.getListadoTrabajadores().size() + " trabajador:");
+			}
 	    	for (Trabajador t : listadoTrabajadores.getListadoTrabajadores()) {
 	    		System.out.println(t.toString());
 	    	}
